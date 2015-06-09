@@ -5,6 +5,8 @@ class CreateAnswers < ActiveRecord::Migration
       t.text :body
       t.integer :question_id
 
+      t.reference index: true
+
       t.timestamps null: false
     end
   end
