@@ -13,16 +13,13 @@ RSpec.describe AnswersController, type: :controller do
 			end
 
 			it 'saves the new answer in the database' do
-				expect { post :create, question_id: question, answer: attributes_for(:answer) }.to change(Answer, :count).by(1)
+				expect { post :create, question_id: question, answer: attributes_for(:answer) }.to change(question.answers, :count).by(1)
 			end
 
 		end
  
 		context 'with invalid attributes' do
-			it 'does not saves the answer' do
-				expect { post :create, question_id: question, answer: attributes_for(:invalid_answer) }.to_not change(question.answers, :count)
-			end
-
+			
 			it 'new answer does not exist' do
 				expect { post :create, question_id: question, answer: attributes_for(:invalid_answer) }.to_not change(Answer, :count)
 			end
@@ -34,5 +31,4 @@ RSpec.describe AnswersController, type: :controller do
 		end
  
 	end
-
 end
